@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "./container/Layout";
-import IconButton from "@material-ui/core/IconButton";
-import ClearIcon from "@material-ui/icons/Clear";
 import { DMSansGeneric } from "./components/Text";
 import BoxLabeled from "./components/BoxLabeled";
 import WaveIcon from "./assets/wave.svg";
@@ -17,9 +15,13 @@ const ChatBot = () => {
   const styles = useStyles();
   const [active, setActive] = useState(false);
 
+  useEffect(() => {
+    setActive(true);
+  }, []);
+
   const trasitionDelay = (delay: number) => ({
     transition: "all 0.2s ease-in",
-    opacity: 1,
+    opacity: active ? 1 : 0,
     transitionDelay: String(delay) + "s",
   });
 
@@ -74,25 +76,6 @@ const ChatBot = () => {
         }}
       >
         <div className={styles.banner} style={trasitionDelay(0.2)}>
-          {/* <div className={styles.header}>
-            <DMSansGeneric
-              fontSize={30}
-              lineHeight={39.09}
-              fontWeight={700}
-              color="#FFFFFF"
-            >
-              IRIS
-            </DMSansGeneric>
-
-            <IconButton
-              style={{
-                color: "#FFF",
-              }}
-              onClick={() => setActive(false)}
-            >
-              <ClearIcon />
-            </IconButton>
-          </div> */}
           <DMSansGeneric
             fontSize={30}
             lineHeight={39.09}
